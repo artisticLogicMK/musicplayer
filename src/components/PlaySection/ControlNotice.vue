@@ -14,7 +14,7 @@
             <button>Left</button><span>or</span><button>Up</button> To move to previous track.
         </div>
         <div>
-            <button>Ctrl</button> To toggle 'repeat' or 'play-by-order.'
+            <button>Ctrl</button> To toggle 'repeat current' or 'repeat all.'
         </div>
     </div>
 </template>

@@ -3,7 +3,9 @@ import { computed, onMounted } from 'vue'
 import { usePlayerStore } from '../../stores/player'
 import { useGlobalStore } from '../../stores/global'
 
-import { PhRepeatOnce, PhSkipBack, PhPlay, PhPause, PhSkipForward, PhArrowsLeftRight } from "@phosphor-icons/vue"
+import {
+  PhRepeatOnce, PhRepeat, PhSkipBack, PhPlay, PhPause, PhSkipForward
+} from "@phosphor-icons/vue"
 
 // initialise state stores.
 const playerStore = usePlayerStore()
@@ -83,32 +85,32 @@ const repeat = () => {
   if (playerStore.toRepeat) {
     // If it is, disable repeat mode
     playerStore.toRepeat = false
-    // Enable play-by-order mode
-    playerStore.toOrder = true
+    // Enable repeat-all mode
+    playerStore.toRepeatAll = true
   } else {
     // If it is not in repeat mode, enable repeat mode
     playerStore.toRepeat = true
-    // Disable play-by-order mode
-    playerStore.toOrder = false
+    // Disable repeat-all mode
+    playerStore.toRepeatAll = false
     // Start playing the track
     window.wavesurfer.play()
   }
 }
 
-// Function to handle the play-by-order button click event
-const order = () => {
+// Function to handle the repeat-all button click event
+const repeatAll = () => {
   // If player instance not created exit function
   if (window.wavesurfer === undefined) return
   
-  // Check if the player is currently set to play-by-order mode
-  if (playerStore.toOrder) {
-    // If it is, disable play-by-order mode
-    playerStore.toOrder = false
+  // Check if the player is currently set to repeat-all mode
+  if (playerStore.toRepeatAll) {
+    // If it is, disable repeat-all mode
+    playerStore.toRepeatAll = false
     // Enable repeat mode
     playerStore.toRepeat = true
   } else {
-    // If it is not in play-by-order mode, enable play-by-order mode
-    playerStore.toOrder = true
+    // If it is not in repeat-all mode, enable repeat-all mode
+    playerStore.toRepeatAll = true
     // Disable repeat mode
     playerStore.toRepeat = false
   }
@@ -120,16 +122,23 @@ onMounted(() => {
   window.addEventListener('keydown', (e) => {
     // When the space key is pressed
     if (e.key === ' ' || e.key === 'Space') {
+      // If an input element is in focus, exit function (perform default ' ' function)
+      if (document.activeElement?.tagName === 'INPUT') return
+
+      // If no input element in focus, stop default behaviour
       e.preventDefault()
       // If the player is paused, play; otherwise, pause
       playerStore.isPaused ? window.wavesurfer.play() : window.wavesurfer.pause()
     }
 
+
     // When ArrowRight or ArrowDown keys are pressed, move to the next track in the playlist
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') forward()
 
+
     // When ArrowLeft or ArrowUp keys are pressed, move to the previous track in the playlist
     if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') back()
+
 
     // When Ctrl + o is pressed, open the file select dialog
     if (e.ctrlKey && (e.key === 'o' || e.key === 'O')) {
@@ -137,6 +146,7 @@ onMounted(() => {
       // Trigger the click event for the file select input element
       document.getElementById('selectAudio').click()
     }
+
 
     // When the Ctrl key is pressed, toggle the repeat function
     if (e.ctrlKey) {
@@ -148,46 +158,50 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex items-center justify-center py-2 border-t border-white/5">
-    <!--repeat-->
-    <button
-      @click="repeat()"
-      :class="{'active': playerStore.toRepeat}"
-    >
-      <PhRepeatOnce weight="fill" />
-    </button>
-    
-    <!--prev-->
-    <button @click="back()" id="back">
-      <PhSkipBack weight="fill" />
-    </button>
-    
-    <!--play/pause-->
-    <button
-      v-if="!playerStore.isPlaying"
-      @click="play()" class="big"
-    >
-      <PhPlay weight="fill" />
-    </button>
-    <button
-      v-else
-      @click="pause()" class="big"
-    >
-      <PhPause weight="fill" />
-    </button>
-    
-    <!--next-->
-    <button @click="forward()">
-      <PhSkipForward weight="fill" />
-    </button>
-    
-    <!--order-->
-    <button
-      @click="order()"
-      :class="{'active': playerStore.toOrder}"
-    >
-      <PhArrowsLeftRight weight="fill" />
-    </button>
+  <div class="">
+    <div class="flex items-center justify-center py-2.5 m-3 mt-2 mb-4 border border-white/5 rounded-full">
+      <!--repeat-->
+      <button
+        @click="repeat()"
+        :class="{'active': playerStore.toRepeat}"
+      >
+        <PhRepeatOnce weight="fill" />
+      </button>
+      
+      <!--prev-->
+      <button @click="back()" id="back">
+        <PhSkipBack weight="fill" />
+      </button>
+      
+      <!--play-->
+      <button
+        v-if="!playerStore.isPlaying"
+        @click="play()" class="big"
+      >
+        <PhPlay weight="fill" />
+      </button>
+
+      <!--pause-->
+      <button
+        v-else
+        @click="pause()" class="big"
+      >
+        <PhPause weight="fill" />
+      </button>
+      
+      <!--next-->
+      <button @click="forward()">
+        <PhSkipForward weight="fill" />
+      </button>
+      
+      <!--repeatAll-->
+      <button
+        @click="repeatAll()"
+        :class="{'active': playerStore.toRepeatAll}"
+      >
+        <PhRepeat weight="fill" />
+      </button>
+    </div>
   </div>
 </template>
 

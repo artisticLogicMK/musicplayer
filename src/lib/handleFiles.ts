@@ -1,4 +1,5 @@
 import arrayBufferToBase64 from './arrayBufferToBase64'
+import isMobile from './isMobileDevice'
 
 // Define the types for jsmediatags data
 interface Tag {
@@ -106,8 +107,8 @@ const handleFiles = async (files: FileList, playerStore): void => {
   // Then play first audio file in the playlist (if no track is playing)
   if (!playerStore.isPlaying) playerStore.play(playerStore.playlist[0])
   
-  // Show playlist menu (incase on mobile)
-  playerStore.playlistToggle = true
+  // If device is mobile, show playlist menu
+  if (isMobile) playerStore.playlistToggle = true
 }
 
 export default handleFiles

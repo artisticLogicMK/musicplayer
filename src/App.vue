@@ -3,6 +3,7 @@
 import { onMounted } from 'vue'
 import { usePlayerStore } from './stores/player'
 import dropzone from './lib/dropzone'
+import isMobile from './lib/isMobileDevice'
 
 // components
 import BubbleBackground from './components/BubbleBackground.vue'
@@ -24,11 +25,8 @@ onMounted(() => {
       element.setAttribute('draggable', 'false')
   )
 
-  // This code checks if user's device is mobile, then adds 'mobile' class to body,
+  // If user's device is mobile, then add 'mobile' class to body,
   // So the scrollbar can be styled to be of less width in mobile devices
-  // Check if device is a mobile device by checking user agent
-  const isMobile = /iPhone|iPad|iPod|Android|Mobi/i.test(navigator.userAgent)
-  // If true add class 'mobile' to body
   if (isMobile) document.body.classList.add('mobile')
 })
 </script>
@@ -36,8 +34,8 @@ onMounted(() => {
 <template>
   <BubbleBackground />
   
-  <div class="relative z-10 h-full max-w-5xl mx-auto">
-    <div class="relative md:flex w-full h-full overflow-hidden">
+  <div class="relative flex items-center z-10 h-full max-w-5xl mx-auto">
+    <div class="relative md:flex w-full h-full max-h-[800px] overflow-hidden">
 
       <PlaySection />
       <PlaylistSection />

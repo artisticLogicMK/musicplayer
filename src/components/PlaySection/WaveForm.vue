@@ -10,7 +10,7 @@ const playerStore = usePlayerStore()
 <template>
   <div
     v-show="playerStore.progressBar === 'waveform'"
-    class="mb-3"
+    class="mb-4"
   >
     <div
       v-show="playerStore.waveformLoading"

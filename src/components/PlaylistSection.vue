@@ -15,7 +15,7 @@ const playerStore = usePlayerStore()
       :class="playerStore.playlistToggle ? 'translate-x-0' : 'translate-x-full md:translate-x-0'"
     >
 
-    <div class="flex flex-col w-full bg-neutral-800 max-h-full min-h-[80vh] overflow-y-auto rounded-2xl p-4 sm:p-5">
+    <div class="flex flex-col w-full bg-neutral-800 h-full overflow-y-auto rounded-2xl p-4 sm:p-5">
 
       <Head />
       <MusicList />

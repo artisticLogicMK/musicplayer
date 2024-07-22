@@ -39,7 +39,7 @@ export const usePlayerStore = defineStore('player', () => {
   const toRepeat = ref<boolean>(false)
   
   // Indicates whether the selected audio files will shuffle to the next track
-  const toOrder = ref<boolean>(true)
+  const toRepeatAll = ref<boolean>(true)
   
   // Indicates whether the audio waveform is currently loading
   const waveformLoading = ref<boolean>(false)
@@ -148,8 +148,8 @@ export const usePlayerStore = defineStore('player', () => {
       if (toRepeat.value === true) window.wavesurfer.play()
       
       
-      // If player is on play-by-order, play the next song
-      if (toOrder.value === true) {
+      // If player is on repeat-all, play the next song
+      if (toRepeatAll.value === true) {
         // Find the index of the currently playing track
         const currentTrackIndex = playlist.value.findIndex(file => file.name === currentTrack.value.name)
         
@@ -170,6 +170,18 @@ export const usePlayerStore = defineStore('player', () => {
   }
 
 
-
-  return { playlist, playlistToggle, currentTrack, play, audioListLoading, isPlaying, isPaused, toRepeat, toOrder, waveformLoading, audioTime, progressBar }
+  return {
+    playlist,
+    playlistToggle,
+    currentTrack,
+    play,
+    audioListLoading,
+    isPlaying,
+    isPaused,
+    toRepeat,
+    toRepeatAll,
+    waveformLoading,
+    audioTime,
+    progressBar
+  }
 })

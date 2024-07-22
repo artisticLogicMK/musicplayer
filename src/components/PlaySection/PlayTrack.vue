@@ -18,7 +18,7 @@ const playerStore = usePlayerStore()
   <TrackCover />
 
   <!--track-->
-  <div class="mb-3 w-[95%] mx-auto">
+  <div class="mb-4 w-[95%] mx-auto">
     
     <WaveForm />
     
