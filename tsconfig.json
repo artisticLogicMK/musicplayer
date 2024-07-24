@@ -12,6 +12,9 @@
     }
   ],
   "compilerOptions": {
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "types": [
+      "vite-plugin-pwa/client"
+    ]
   }
 }

@@ -30,6 +30,7 @@ onMounted(() => {
 <template>
   <div
     v-show="playerStore.playlist.length && playerStore.progressBar === 'slider'"
+    class="mb-3"
   >
     <input type="range" min="0" max="100" value="0" class="w-full appearance-none h-[5px] bg-white/20 rounded-full mb-1 cursor-pointer" id="seekSlider">
   </div>

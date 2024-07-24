@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // Modules
 import { usePlayerStore } from '../stores/player'
+import { vAutoAnimate } from '@formkit/auto-animate/vue'
 
 // Components
 import Head from './PlaySection/Head.vue'
@@ -20,7 +21,7 @@ const playerStore = usePlayerStore()
     <Head />
 
     <div class="grow flex items-center justify-center overflow-y-auto px-4 py-5 overflow-x-hidden">
-      <div class="my-auto">
+      <div class="w-full my-auto" v-auto-animate>
 
         <PlayTrack v-if="playerStore.playlist.length" />
 

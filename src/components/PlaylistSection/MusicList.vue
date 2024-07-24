@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-import { computed, ref, onMounted, watchEffect } from 'vue'
+// modules
+import { computed, onMounted, watchEffect } from 'vue'
 import { useGlobalStore } from '../../stores/global'
 import { usePlayerStore } from '../../stores/player'
 import { useAutoAnimate } from '@formkit/auto-animate/vue'
 
+// components
 import MusicItem from './MusicItem.vue'
 import { PhHeadphones } from "@phosphor-icons/vue"
 
@@ -39,7 +41,7 @@ const [parent, enable] = useAutoAnimate()
 watchEffect(() => {
   // Check if new files are currently being loaded into the playlist
   if (!playerStore.audioListLoading) {
-    // If no files are being loaded, enable animations for the playlist
+    // If no files are being loaded, enable animations for the playlist view
     enable(true)
   } else {
     // If files are being loaded, disable animations to ensure better performance

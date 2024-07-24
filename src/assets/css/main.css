@@ -5,7 +5,9 @@
 :root {
   --main-color: #bd51b7;
   --main-color-dark: #9e4399;
-  --text-color: rgba(255, 255, 255, 0.75)
+  --text-color: rgba(255, 255, 255, 0.75);
+  --bg-color1: #171717;
+  --bg-color2: #262626;
 }
 
 /*

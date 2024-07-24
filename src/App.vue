@@ -1,16 +1,17 @@
 <script setup lang="ts">
 // modules
 import { onMounted } from 'vue'
-import { usePlayerStore } from './stores/player'
-import dropzone from './lib/dropzone'
-import isMobile from './lib/isMobileDevice'
+import { usePlayerStore } from '@/stores/player'
+import dropzone from '@/lib/dropzone'
+import isMobile from '@/lib/isMobileDevice'
 
 // components
-import BubbleBackground from './components/BubbleBackground.vue'
-import PlaySection from './components/PlaySection.vue'
-import PlaylistSection from './components/PlaylistSection.vue'
-import DragFilesContainer from './components/DragFilesContainer.vue'
-import FilesLoadingContainer from './components/FilesLoadingContainer.vue'
+import BubbleBackground from '@/components/BubbleBackground.vue'
+import PlaySection from '@/components/PlaySection.vue'
+import PlaylistSection from '@/components/PlaylistSection.vue'
+import DragFilesContainer from '@/components/DragFilesContainer.vue'
+import FilesLoadingContainer from '@/components/FilesLoadingContainer.vue'
+import PWAPrompts from '@/components/PWAPrompts.vue'
 
 // initialise state stores.
 const playerStore = usePlayerStore()
@@ -40,6 +41,8 @@ onMounted(() => {
       <PlaySection />
       <PlaylistSection />
 
+      <!--This components houses the app offline install and update functionaliteis-->
+      <PWAPrompts />
     </div>
   </div>
   
