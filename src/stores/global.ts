@@ -7,7 +7,7 @@ export const useGlobalStore = defineStore('global', () => {
   const searchPlaylist = ref<string | null>(null)
   
   // Holds all favourite tracks fetched from localStorage
-  const favouritesList = ref<[]>([])
+  const favouritesList = ref<string[]>([])
   
   // Indicates whether the playlist should be filtered to show only favourite tracks.
   const favouritesFilter = ref<boolean>(false)

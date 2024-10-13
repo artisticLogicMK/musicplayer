@@ -3,28 +3,17 @@ import { defineStore } from 'pinia'
 import WaveSurfer from 'wavesurfer.js'
 import formatAudioTime from '../lib/formatAudioTime'
 import colorPlayedPart from '../lib/colorPlayedPart'
-
-interface Playlist {
-  playlist: Array<{
-    name: string,
-    fileURL: string,
-    title: string | null,
-    artist: string,
-    album: string,
-    year: string,
-    cover: string | null,
-  }>
-}
+import '../lib/types'
 
 export const usePlayerStore = defineStore('player', () => {
   // An array that holds all the audio tracks in the playlist.
-  const playlist: Playlist = ref<[]>([])
+  const playlist = ref<Playlist[]>([])
   
   // Indicates whether the playlist tab is open or not.
   const playlistToggle = ref<boolean>(false)
   
   // Stores the currently playing audio object
-  const currentTrack = ref<object>({})
+  const currentTrack = ref<Playlist>({})
   
   // Indicates whether audio files are being processed after selection
   const audioListLoading = ref<boolean>(false)

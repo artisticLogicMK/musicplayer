@@ -30,7 +30,7 @@ const truncateName = computed(() => {
     v-if="Object.keys(playerStore.currentTrack).length"
     class="text-[--text-color] text-center"
   >
-    <h1 class="text-lg sm:text-base">{{ truncateName }}</h1>
+    <h1 class="text-base">{{ truncateName }}</h1>
     <p class="text-sm sm:text-xs mb-2">{{ track.artist }}</p>
     <p class="text-sm sm:text-xs text-white/40">{{ track.album }} - {{ track.year }}</p>
   </div>

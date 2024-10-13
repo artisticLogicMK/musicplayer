@@ -1,6 +1,6 @@
 <template>
     <div class="keyb text-justify mt-5">
-        <h1 class="text-base text-[text-color] text-sm font-semibold mb-2">Keyboard Commands:</h1>
+        <h1 class="text-base text-[text-color] font-semibold mb-2">Keyboard Commands:</h1>
         <div>
             <button>Ctrl O</button> To select audio files.
         </div>

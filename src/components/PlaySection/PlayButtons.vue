@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { computed, onMounted } from 'vue'
 import { usePlayerStore } from '../../stores/player'
-import { useGlobalStore } from '../../stores/global'
 
 import {
   PhRepeatOnce, PhRepeat, PhSkipBack, PhPlay, PhPause, PhSkipForward
@@ -9,7 +8,6 @@ import {
 
 // initialise state stores.
 const playerStore = usePlayerStore()
-const globalStore = useGlobalStore()
 
 // When play button is clicked
 const play = () => {
@@ -144,7 +142,7 @@ onMounted(() => {
     if (e.ctrlKey && (e.key === 'o' || e.key === 'O')) {
       e.preventDefault()
       // Trigger the click event for the file select input element
-      document.getElementById('selectAudio').click()
+      document.getElementById('selectAudio')?.click()
     }
 
 

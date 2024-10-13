@@ -9,8 +9,8 @@ const playerStore = usePlayerStore()
 const globalStore = useGlobalStore()
 
 // When search input is typed into
-const search = (value) => {
-  // ASsign value to playlist search filter value in state
+const search = (value: string | null) => {
+  // Assign value to playlist search filter value in state
   globalStore.searchPlaylist = value
   // Turn off favourites playlist filter
   globalStore.favouritesFilter = false
@@ -18,7 +18,7 @@ const search = (value) => {
 
 
 // When favourite filter button is clicked
-const showFavourites = (value) => {
+const showFavourites = () => {
   // If playlist is empty, exit function (do nothing)
   if (!playerStore.playlist.length) return
 

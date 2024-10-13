@@ -2,21 +2,22 @@
 import { onMounted } from 'vue'
 import { usePlayerStore } from '../../stores/player'
 import colorPlayedPart from '../../lib/colorPlayedPart'
+import '../../lib/types'
 
 // Initialize the player store to manage the state related to the audio player
 const playerStore = usePlayerStore()
 
 onMounted(() => {
   // Get slider reference
-  const seekSlider = document.getElementById('seekSlider')
+  const seekSlider: HTMLInputElement | null = document.getElementById('seekSlider') as HTMLInputElement
   
   // Add an event listener to the seek slider
-  seekSlider.addEventListener('input', function() {
+  seekSlider?.addEventListener('input', function() {
     // If WaveSurfer (player) instance not set, exit function
     if (window.wavesurfer === undefined) return
     
       // Calculate the seek time based on the slider value
-      const seekTime = window.wavesurfer.getDuration() * (this.value / 100)
+      const seekTime = window.wavesurfer.getDuration() * (this.valueAsNumber / 100)
   
       // Update the current playback time of the audio element
       window.wavesurfer.setTime(seekTime)

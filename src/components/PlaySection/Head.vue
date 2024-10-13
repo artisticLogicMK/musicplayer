@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 // modules
 import { usePlayerStore } from '../../stores/player'
-import { useGlobalStore } from '../../stores/global'
 import handleFiles from '../../lib/handleFiles'
 
 // components
@@ -9,19 +8,22 @@ import { PhPlus, PhPlaylist } from "@phosphor-icons/vue"
 
 // initialise state stores.
 const playerStore = usePlayerStore()
-const globalStore = useGlobalStore()
 
 // When add music button is clicked. Manually click input:file to open file select
-const addMusic = () => document.getElementById('selectAudio').click()
+const addMusic = () => document.getElementById('selectAudio')?.click()
 
 // When audio is selected.
-const filesSelectd = (e) => {
+const filesSelectd = (e: Event) => {
+    const target = e.target as HTMLInputElement
     // Retrieve selected files from the event object
-    const files = e.target.files
+    const files = target.files
 
     // Then pass files to handleFiles method
     // Pass state store in second arg so state can be accessed in the module
-    handleFiles(files, playerStore)
+    // Check if files is not null
+    if (files) {
+      handleFiles(files, playerStore)
+    }
 }
 </script>
 
